@@ -30,6 +30,15 @@ const attelot_speletaju = document.querySelector('#display')
 
 let speletajs_O = false
 
+var score_O = 0
+var score_X = 0
+
+const score_output = document.querySelector("#punkti")
+
+function saveScore(){
+    localStorage.setItem("scoreX", JSON.stringify(score))
+}
+
 visi_laucini.forEach(laucins => {
     laucins.addEventListener("click", veikt_gajienu, {once: true})
 })
@@ -41,11 +50,21 @@ function veikt_gajienu(klikskis){
     laucins.classList.add(aktivais_speletajs)
 
     if(parbaudit_uzvaru(aktivais_speletajs)){
-        rezultatu_teksts.textContent = `Spēlētājs ${} uzvarēja!`
+        rezultatu_teksts.textContent = `Spēlētājs ${speletajs_O ? "O" : "X"} uzvarēja!`
+        rezultatu_logs.classList.add('show')
+        score_output.textContent = ''
+
+        if(speletajs_O){
+            score_O++
+            localStorage.setItem("score ", "O:"+score_O)
+        }else{
+            score_X++
+            localStorage.setItem("score ", "X:"+score_X)
+        } 
 
     }else if(vari_ir_neizskirts()){
-
-        
+        rezultatu_teksts.textContent = `Neizšķirts!`
+        rezultatu_logs.classList.add('show')
     }else{
 
         speletajs_O = !speletajs_O
@@ -74,3 +93,18 @@ function parbaudit_uzvaru(aktivais){
 
     return false
 }
+
+function vari_ir_neizskirts(){
+    for(let i = 0; i < uzvaras_nosacijumi.length; i++){
+        const laucins = visi_laucini[i]
+
+        if(!laucins.classList.contains(klase_X) && !laucins.classList.contains(klase_O)){
+            return false
+        }
+    }
+    return true
+}
+
+atjaunot.addEventListener('click', () =>{
+    location.reload()
+})
