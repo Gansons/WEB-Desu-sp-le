@@ -1,0 +1,100 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS';
+    margin: 0;
+    transition: .3s;
+}
+
+body{
+    background: #1a252c;
+}
+
+
+h1{
+    color: #fff;
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 4rem;
+}
+
+p{
+    color: #fff;
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.board{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.cell{
+    width: 8rem;
+    height: 8rem;
+    border: .1rem solid #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+.circle::before{
+    content: 'O';
+    font-size: 3rem;
+}
+
+.x::before{
+    content: 'X';
+    font-size: 3rem;
+}
+
+.circle{
+    color: #498afb;
+}
+
+.x{
+    color: #09c372;
+}
+
+.result.show{
+    display: flex;
+}
+
+.result{
+    display: none;
+    position: fixed;
+    /* top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    inset: 0; /*Veic to pašu darbību ko top bottom left un rigth kopa*/
+    background: rgba(44, 26, 44, 98%);
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 3rem;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.result button{
+    font-size: 2rem;
+    background: #fff;
+    border: .1 solid #111;
+    padding: .4rem 1rem;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+
+
+.result button:hover{
+    background: #111;
+    color: #fff;
+    border-color: #fff;
+}
