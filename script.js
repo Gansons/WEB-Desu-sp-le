@@ -50,6 +50,11 @@ function veikt_gajienu(klikskis){
     const laucins = klikskis.target
     const aktivais_speletajs = speletajs_O ? klase_O : klase_X
 
+    if(!speletajs_O) document.body.classList.add("X-turn")
+        else{
+            document.body.classList.remove("X-turn")
+    }
+
     laucins.classList.add(aktivais_speletajs)
 
     if(parbaudit_uzvaru(aktivais_speletajs)){

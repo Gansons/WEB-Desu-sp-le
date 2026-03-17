@@ -71,12 +71,10 @@ p{
 
 .circle{
     color: #498afb;
-    background-color:  #1a252c;
 }
 
 .x{
     color: #09c372;
-    background-color: #1c2c1a;
 }
 
 .punkti{
@@ -105,16 +103,15 @@ p{
     gap: 2rem;
 }
 
-.result button{
+.result button, a{
     font-size: 2rem;
     background: #fff;
     border: .1 solid #111;
     padding: .4rem 1rem;
     border-radius: .5rem;
     cursor: pointer;
+    text-decoration: none;
 }
-
-
 
 .result button:hover{
     background: #111;
@@ -125,4 +122,12 @@ p{
 .score{
     color: #fff;
     font-size: 1rem;
+}
+
+.O-turn{
+    background-color: #1a252c;
+}
+
+.X-turn{
+    background-color: #1c2c1a;
 }
