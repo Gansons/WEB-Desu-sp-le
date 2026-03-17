@@ -41,6 +41,22 @@ p{
     cursor: pointer;
 }
 
+.cell:nth-child(-n + 3) {
+    border-top: none;
+} 
+
+.board div:nth-child(3n) {
+    border-right: none;
+}
+
+.cell:nth-child(3n  - 2) {
+    border-left: none;
+}
+
+.cell:nth-child(n + 7) {
+    border-bottom: none;
+}
+
 
 
 .circle::before{
@@ -55,10 +71,17 @@ p{
 
 .circle{
     color: #498afb;
+    background-color:  #1a252c;
 }
 
 .x{
     color: #09c372;
+    background-color: #1c2c1a;
+}
+
+.punkti{
+    text-align: center;
+    color: #ff0033;
 }
 
 .result.show{

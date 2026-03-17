@@ -16,7 +16,7 @@ const uzvaras_nosacijumi = [
     [6,7,8],
     [0,3,6],
     [1,4,7],
-    [2,5,9],
+    [2,5,8],
     [0,4,8],
     [2,4,6]
 ]
@@ -27,17 +27,20 @@ const rezultatu_logs = document.querySelector('#resultBox')
 const rezultatu_teksts = document.querySelector('#resultInfo')
 const atjaunot = document.querySelector('#restartButton')
 const attelot_speletaju = document.querySelector('#display')
+const score_output = document.querySelector("#punkti")
+
+const clearScore = document.querySelector("#clearScore")
 
 let speletajs_O = false
 
-var score_O = 0
-var score_X = 0
+    var score_O = Number (localStorage.getItem("score_O")) || 0
+    var score_X = Number(localStorage.getItem("score_X")) || 0
 
-const score_output = document.querySelector("#punkti")
+clearScore.addEventListener("click", () => {
+    localStorage.clear()
+})
 
-function saveScore(){
-    localStorage.setItem("scoreX", JSON.stringify(score))
-}
+
 
 visi_laucini.forEach(laucins => {
     laucins.addEventListener("click", veikt_gajienu, {once: true})
@@ -51,17 +54,20 @@ function veikt_gajienu(klikskis){
 
     if(parbaudit_uzvaru(aktivais_speletajs)){
         rezultatu_teksts.textContent = `Spēlētājs ${speletajs_O ? "O" : "X"} uzvarēja!`
+        
         rezultatu_logs.classList.add('show')
-        score_output.textContent = ''
 
         if(speletajs_O){
             score_O++
-            localStorage.setItem("score ", "O:"+score_O)
+            localStorage.setItem("score_O",score_O)
+           
         }else{
             score_X++
-            localStorage.setItem("score ", "X:"+score_X)
+            localStorage.setItem("score_X",score_X)
         } 
 
+        score_output.textContent = "X:"+score_X+" | O:"+ score_O
+        
     }else if(vari_ir_neizskirts()){
         rezultatu_teksts.textContent = `Neizšķirts!`
         rezultatu_logs.classList.add('show')
@@ -69,7 +75,6 @@ function veikt_gajienu(klikskis){
 
         speletajs_O = !speletajs_O
         attelot_speletaju.textContent = speletajs_O ? "O" : "X"
-
     }
 
     
@@ -87,12 +92,16 @@ function parbaudit_uzvaru(aktivais){
         if( visi_laucini[a].classList.contains(aktivais) &&
             visi_laucini[b].classList.contains(aktivais) &&
             visi_laucini[c].classList.contains(aktivais)){
-                return true
+                return kombinacija
           }
     }
 
     return false
 }
+
+
+
+
 
 function vari_ir_neizskirts(){
     for(let i = 0; i < uzvaras_nosacijumi.length; i++){
