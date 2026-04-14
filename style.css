@@ -4,33 +4,28 @@
     margin: 0;
     transition: .3s;
 }
-
 body{
     background: #1a252c;
 }
-
-
 h1{
     color: #fff;
     text-align: center;
     margin-top: 4rem;
     font-size: 4rem;
 }
-
 p{
     color: #fff;
     text-align: center;
     margin: 1rem 0;
     font-size: 1.5rem;
 }
-
 .board{
     display: grid;
     justify-content: center;
     align-items: center;
     grid-template-columns: repeat(3, auto);
+    position: relative;
 }
-
 .cell{
     width: 8rem;
     height: 8rem;
@@ -40,60 +35,43 @@ p{
     align-items: center;
     cursor: pointer;
 }
-
 .cell:nth-child(-n + 3) {
     border-top: none;
 } 
-
 .board div:nth-child(3n) {
     border-right: none;
 }
-
 .cell:nth-child(3n  - 2) {
     border-left: none;
 }
-
 .cell:nth-child(n + 7) {
     border-bottom: none;
 }
-
-
-
 .circle::before{
     content: 'O';
     font-size: 3rem;
 }
-
 .x::before{
     content: 'X';
     font-size: 3rem;
 }
-
 .circle{
     color: #498afb;
 }
-
 .x{
     color: #09c372;
 }
-
 .punkti{
     text-align: center;
     color: #ff0033;
 }
-
 .result.show{
     display: flex;
 }
-
 .result{
     display: none;
     position: fixed;
-    /* top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0; */
-    inset: 0; /*Veic to pašu darbību ko top bottom left un rigth kopa*/
+    inset: 0;
     background: rgba(44, 26, 44, 98%);
     justify-content: center;
     align-items: center;
@@ -102,7 +80,6 @@ p{
     flex-direction: column;
     gap: 2rem;
 }
-
 .result button, a{
     font-size: 2rem;
     background: #fff;
@@ -112,22 +89,45 @@ p{
     cursor: pointer;
     text-decoration: none;
 }
-
 .result button:hover{
     background: #111;
     color: #fff;
     border-color: #fff;
 }
-
 .score{
     color: #fff;
     font-size: 1rem;
 }
-
 .O-turn{
     background-color: #1a252c;
 }
-
 .X-turn{
     background-color: #1c2c1a;
+}
+#timer {
+    color: #fff;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    letter-spacing: .05em;
+}
+.win-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.win-line line {
+    stroke: #fff;
+    stroke-width: 5px;
+    stroke-linecap: round;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: draw-line .4s ease forwards;
+}
+@keyframes draw-line {
+    to { stroke-dashoffset: 0; }
+}
+.uzvaretajs {
+    opacity: .5;
 }
